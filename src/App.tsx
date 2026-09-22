@@ -3,7 +3,7 @@ import { Journey, Memory, Milestone, FutureLetter, AppSettings, ElapsedTime, DEF
 import { THEMES, ThemeConfig } from './styles/themes';
 import { calculateElapsedTime, calculateMilestoneProgress, MilestoneProgress } from './utils/dateCalculations';
 import { storageService } from './services/storage/storageService';
-import { DEFAULT_JOURNEY } from './services/storage/defaultJourney';
+import { DEFAULT_JOURNEY, DEFAULT_JOURNEY_ID } from './services/storage/defaultJourney';
 import { AmbientCanvas } from './components/AmbientCanvas';
 import { JourneyHeader } from './components/JourneyHeader';
 import { CountdownDisplay } from './components/CountdownDisplay';
@@ -191,13 +191,32 @@ export default function App() {
 
   // Compute Milestone Progress
   const milestoneProgress: MilestoneProgress = useMemo(() => {
-    return calculateMilestoneProgress(journey.startDate, milestones, currentTime);
-  }, [journey.startDate, milestones, currentTime]);
+    return calculateMilestoneProgress(
+      journey.startDate,
+      milestones,
+      currentTime,
+      journey.id === DEFAULT_JOURNEY_ID
+    );
+  }, [journey.id, journey.startDate, milestones, currentTime]);
 
   // Save updated journey
   const handleSaveJourney = async (updated: Journey) => {
-    setJourney(updated);
-    await storageService.saveJourney(updated);
+    const hasNewStartingDate = updated.startDate !== journey.startDate;
+    const savedJourney = hasNewStartingDate
+      ? {
+          ...updated,
+          id: `journey-${Date.now()}`,
+          createdAt: new Date().toISOString(),
+        }
+      : updated;
+
+    setJourney(savedJourney);
+    if (hasNewStartingDate) {
+      setMemories([]);
+      setMilestones([]);
+      setFutureLetters([]);
+    }
+    await storageService.saveJourney(savedJourney);
   };
 
   // Toggle Fullscreen
@@ -232,13 +251,25 @@ export default function App() {
   };
 
   // Add custom milestone
-  const handleAddMilestone = async (days: number, label: string) => {
+  const handleAddMilestone = async (
+    days: number,
+    label: string,
+    trackingType: Milestone['trackingType'],
+    startDate: string | undefined,
+    targetDate: string | undefined,
+    status: Milestone['status']
+  ) => {
     const newMile: Milestone = {
       id: `mile-${Date.now()}`,
       journeyId: journey.id,
       days,
       label,
+      trackingType,
+      startDate,
+      targetDate,
+      status,
       isCustom: true,
+      startedAt: status === 'started' ? new Date().toISOString() : undefined,
     };
     await storageService.saveMilestone(newMile);
     setMilestones((prev) => [...prev, newMile].sort((a, b) => a.days - b.days));
@@ -248,6 +279,20 @@ export default function App() {
   const handleDeleteMilestone = async (id: string) => {
     await storageService.deleteMilestone(id);
     setMilestones((prev) => prev.filter((m) => m.id !== id));
+  };
+
+  const handleUpdateMilestoneStatus = async (id: string, status: NonNullable<Milestone['status']>) => {
+    const milestone = milestones.find((item) => item.id === id);
+    if (!milestone) return;
+
+    const updated = {
+      ...milestone,
+      status,
+      startedAt: status === 'started' ? new Date().toISOString() : milestone.startedAt,
+      reachedAt: status === 'achieved' ? new Date().toISOString() : milestone.reachedAt,
+    };
+    await storageService.saveMilestone(updated);
+    setMilestones((prev) => prev.map((item) => (item.id === id ? updated : item)));
   };
 
   // Add future letter
@@ -563,11 +608,13 @@ export default function App() {
       <MilestonesPanel
         milestoneProgress={milestoneProgress}
         customMilestones={milestones}
+        showDefaultMilestones={journey.id === DEFAULT_JOURNEY_ID}
         theme={currentTheme}
         isOpen={isMilestonesOpen}
         onClose={() => setIsMilestonesOpen(false)}
         onAddMilestone={handleAddMilestone}
         onDeleteMilestone={handleDeleteMilestone}
+        onUpdateMilestoneStatus={handleUpdateMilestoneStatus}
         notificationsEnabled={settings.notificationsEnabled}
         onToggleNotifications={handleToggleNotifications}
       />

@@ -99,9 +99,14 @@ export interface Milestone {
   journeyId: string;
   days: number;
   label: string;
+  trackingType?: 'daily' | 'date';
+  startDate?: string;
+  targetDate?: string;
+  status?: 'planned' | 'started' | 'achieved' | 'missed';
   isCustom?: boolean;
   notes?: string;
   reachedAt?: string;
+  startedAt?: string;
 }
 
 export interface FutureLetter {

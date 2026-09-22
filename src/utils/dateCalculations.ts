@@ -205,15 +205,16 @@ export interface MilestoneProgress {
 export function calculateMilestoneProgress(
   startDateStr: string,
   customMilestones: Milestone[] = [],
-  now: Date = new Date()
+  now: Date = new Date(),
+  includeDefaultMilestones = true
 ): MilestoneProgress {
   const startDate = new Date(startDateStr);
   const diffMs = Math.max(0, now.getTime() - startDate.getTime());
   const currentDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
 
-  // Merge default and custom milestones
+  // Built-in milestones belong only to the seeded journey; custom journeys start empty.
   const allMilestoneDays = [
-    ...DEFAULT_MILESTONE_DAYS,
+    ...(includeDefaultMilestones ? DEFAULT_MILESTONE_DAYS : []),
     ...customMilestones.map(m => ({ days: m.days, label: m.label }))
   ].sort((a, b) => a.days - b.days);
 
