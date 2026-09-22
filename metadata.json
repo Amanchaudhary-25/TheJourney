@@ -1,0 +1,6 @@
+{
+  "name": "The Journey",
+  "description": "A place to remember when something began. A privacy-first digital time capsule and elapsed-time counter.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

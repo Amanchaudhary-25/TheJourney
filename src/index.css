@@ -1,0 +1,254 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Manrope', 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  html,
+  body {
+    font-family: var(--font-sans);
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #090a0f;
+  }
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.04), rgba(18, 18, 20, 0.96) 38%, rgba(0, 0, 0, 1) 70%);
+  overflow: hidden;
+  animation: splashFade 0.35s ease-out;
+}
+
+.splash-orb {
+  position: absolute;
+  inset: 20% 22%;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 24%, rgba(255, 255, 255, 0) 72%);
+  filter: blur(32px);
+  animation: orbPulse 1.8s ease-in-out infinite alternate;
+}
+
+.splash-logo {
+  position: relative;
+  z-index: 1;
+  width: min(42vmin, 220px);
+  height: auto;
+  filter: grayscale(1) brightness(1.15) contrast(1.2);
+  opacity: 0.92;
+  animation: logoRise 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.splash-text-wrap {
+  position: relative;
+  z-index: 1;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.splash-text {
+  display: inline-block;
+  font-size: clamp(1.1rem, 2.8vw, 2.7rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.88);
+  text-shadow: 0 0 18px rgba(255, 255, 255, 0.18);
+  animation: textSwap 0.25s ease-in-out;
+}
+
+.font-playfair {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.font-manrope {
+  font-family: 'Manrope', 'Inter', system-ui, sans-serif;
+}
+
+.font-cormorant {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-cinzel {
+  font-family: 'Cinzel', Georgia, serif;
+}
+
+.font-libre {
+  font-family: 'Libre Baskerville', Georgia, serif;
+}
+
+.font-great-vibes {
+  font-family: 'Great Vibes', cursive;
+}
+
+.font-montserrat {
+  font-family: 'Montserrat', 'Inter', system-ui, sans-serif;
+}
+
+.font-courier {
+  font-family: 'Courier Prime', Courier, monospace;
+}
+
+.font-editorial {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-clean {
+  font-family: 'Manrope', 'Inter', system-ui, sans-serif;
+}
+
+@keyframes logoRise {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes textSwap {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes orbPulse {
+  0% {
+    transform: scale(0.96);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes splashFade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  -moz-font-feature-settings: "tnum";
+  -webkit-font-feature-settings: "tnum";
+  font-feature-settings: "tnum";
+}
+
+html,
+body,
+#root,
+*,
+*::before,
+*::after {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0px !important;
+  height: 0px !important;
+  background: transparent !important;
+  -webkit-appearance: none !important;
+}
+
+::-webkit-scrollbar-thumb,
+*::-webkit-scrollbar-thumb {
+  display: none !important;
+  width: 0px !important;
+  height: 0px !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+::-webkit-scrollbar-track,
+*::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner,
+*::-webkit-scrollbar-corner {
+  display: none !important;
+  background: transparent !important;
+}
+
+.no-scrollbar::-webkit-scrollbar,
+.hide-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.no-scrollbar,
+.hide-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+input[type="range"] {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  background: transparent !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  opacity: 0 !important;
+}
+
+input[type="range"]::-moz-range-thumb {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  opacity: 0 !important;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background: transparent !important;
+  display: none !important;
+}
+
+input[type="range"]::-moz-range-track {
+  background: transparent !important;
+  display: none !important;
+}

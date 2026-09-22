@@ -1,0 +1,19 @@
+{
+  "id": "/",
+  "name": "The Journey — Every Second Counts",
+  "short_name": "The Journey",
+  "description": "A place to remember when something began. A privacy-first digital time capsule and elapsed-time counter.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#090A0F",
+  "theme_color": "#090A0F",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <circle cx="32" cy="32" r="30" stroke="rgba(255, 255, 255, 0.2)" stroke-width="1.5" />
+  <circle cx="32" cy="32" r="22" stroke="url(#orbitGlow)" stroke-width="1.5" stroke-dasharray="2 4" />
+  <ellipse cx="32" cy="32" rx="28" ry="12" stroke="rgba(255, 255, 255, 0.35)" stroke-width="1.2" transform="rotate(-25 32 32)" />
+  <circle cx="32" cy="32" r="3" fill="#ffffff" />
+  <circle cx="48" cy="24" r="2" fill="#E2E8F0" />
+  <defs>
+    <linearGradient id="orbitGlow" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#38BDF8" />
+      <stop offset="0.5" stop-color="#818CF8" />
+      <stop offset="1" stop-color="#C084FC" />
+    </linearGradient>
+  </defs>
+</svg>

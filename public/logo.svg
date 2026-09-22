@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <radialGradient id="bgGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(256 220) rotate(90) scale(260)">
+      <stop stop-color="#fff4c2"/>
+      <stop offset="0.2" stop-color="#ffcc66"/>
+      <stop offset="0.5" stop-color="#ff7a18"/>
+      <stop offset="1" stop-color="#4a0d0d"/>
+    </radialGradient>
+    <linearGradient id="ring1" x1="70" y1="70" x2="442" y2="442" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffd75a"/>
+      <stop offset="0.5" stop-color="#ff8a00"/>
+      <stop offset="1" stop-color="#ffd166"/>
+    </linearGradient>
+    <linearGradient id="ring2" x1="120" y1="90" x2="404" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff7d6"/>
+      <stop offset="1" stop-color="#f59e0b"/>
+    </linearGradient>
+    <linearGradient id="mandalaInner" x1="170" y1="160" x2="342" y2="354" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffeb9a"/>
+      <stop offset="0.3" stop-color="#f97316"/>
+      <stop offset="0.7" stop-color="#ef4444"/>
+      <stop offset="1" stop-color="#7c2d12"/>
+    </linearGradient>
+  </defs>
+
+  <circle cx="256" cy="256" r="228" fill="url(#bgGlow)" opacity="0.9"/>
+  <circle cx="256" cy="256" r="202" stroke="url(#ring1)" stroke-width="16" fill="none"/>
+  <circle cx="256" cy="256" r="174" stroke="url(#ring2)" stroke-width="10" fill="none" opacity="0.95"/>
+
+  <g opacity="0.92">
+    <path d="M256 70C289 126 340 160 406 170C343 181 292 214 256 271C220 214 169 181 106 170C172 160 223 126 256 70Z" fill="#fef3c7" stroke="#8b1e15" stroke-width="6"/>
+    <path d="M256 442C289 386 340 352 406 342C343 331 292 298 256 241C220 298 169 331 106 342C172 352 223 386 256 442Z" fill="#fef3c7" stroke="#8b1e15" stroke-width="6"/>
+    <path d="M70 256C126 223 160 172 170 106C181 169 214 220 271 256C214 292 181 343 170 406C160 340 126 289 70 256Z" fill="#fef3c7" stroke="#8b1e15" stroke-width="6"/>
+    <path d="M442 256C386 223 352 172 342 106C331 169 298 220 241 256C298 292 331 343 342 406C352 340 386 289 442 256Z" fill="#fef3c7" stroke="#8b1e15" stroke-width="6"/>
+  </g>
+
+  <g stroke="#ffcf4a" stroke-width="10" stroke-linecap="round" opacity="0.9">
+    <path d="M256 110V146M256 366V402M110 256H146M366 256H402"/>
+    <path d="M161 161L184 184M328 328L345 345M161 351L184 328M328 184L345 167"/>
+  </g>
+
+  <circle cx="256" cy="256" r="136" fill="url(#mandalaInner)" opacity="0.88"/>
+  <circle cx="256" cy="256" r="110" fill="#fff5d9" opacity="0.9" stroke="#7e2d0b" stroke-width="8"/>
+  <circle cx="256" cy="256" r="62" fill="#f8fafc" opacity="0.88" stroke="#7e2d0b" stroke-width="8"/>
+
+  <g fill="#f97316" stroke="#7e2d0b" stroke-width="5">
+    <path d="M256 180L268 234L256 288L244 234L256 180Z"/>
+    <path d="M180 256L234 244L288 256L234 268L180 256Z"/>
+    <path d="M203 203L228 228L203 309L178 228L203 203Z"/>
+    <path d="M309 203L284 228L309 309L334 228L309 203Z"/>
+  </g>
+
+  <g opacity="0.9">
+    <circle cx="256" cy="256" r="14" fill="#fff" stroke="#7e2d0b" stroke-width="4"/>
+    <circle cx="256" cy="146" r="6" fill="#fff"/>
+    <circle cx="256" cy="366" r="6" fill="#fff"/>
+    <circle cx="146" cy="256" r="6" fill="#fff"/>
+    <circle cx="366" cy="256" r="6" fill="#fff"/>
+    <circle cx="180" cy="180" r="6" fill="#fff"/>
+    <circle cx="332" cy="180" r="6" fill="#fff"/>
+    <circle cx="180" cy="332" r="6" fill="#fff"/>
+    <circle cx="332" cy="332" r="6" fill="#fff"/>
+  </g>
+</svg>
